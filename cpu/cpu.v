@@ -70,22 +70,32 @@ module cpu
     wire [15:0] branch_offset_wire;
     wire [31:0] reg_address_wire;
     wire [31:0] pc_to_address_wire;
-    wire [31:0] instr_mem_instruction_wire;
-    wire [4:0] waddr_wire; // mux output
-    wire [31:0] wdata_wire; // mux output
-    wire [31:0] operand0_wire; // mux output
-    wire [31:0] sign_extension_out_wire;
-
-
+    wire [31:0] instr_mem_instruction;
+    wire [31:0] operand1_wire;
+    wire [31:0] reg_file_wdata_wire;
+    wire [31:0] rdata1_wire;
+    wire [31:0] sign_out_wire;
+    wire reg_file_rmux_sel;
+    wire reg_file_dmux_sel;
+    wire alu_mux_sel;
+    wire [4:0] shamt_wire;
+    wire [3:0] control_wire;
+    wire zero_wire;
+    wire [3:0] data_mem_wren_wire;
+    wire reg_file_wren_wire;
+    wire [31:0] alu_result_wire;
+    wire [31:0] data_mem_rdata_wire;
+    wire [31:0] rdata0_wire;
+    wire overflow_wire;
 
 	//---------------------------------------------------------------
 	// Instantiations
 	//---------------------------------------------------------------
     program_conter cpu_program_counter
     (
-      .clk    (clk),
-      .rst    (rst),
-      .pc_control (pc_control_wire),
+      .clk            (clk),
+      .rst            (rst),
+      .pc_control     (pc_control_wire),
       .jump_address   (pc_control_wire),
       .branch_offset  (branch_offset_wire),
       .reg_address    (reg_address_wire),
@@ -94,8 +104,8 @@ module cpu
 
     instruction_memory cpu_program_counter
     (
-      .address  (pc_to_address_wire),
-      .instruction  (instr_mem_instruction),
+      .address        (pc_to_address_wire),
+      .instruction    (instr_mem_instruction)
     );
 
     register_file cpu_register_file
@@ -103,45 +113,45 @@ module cpu
       .clk            (clk),
       .raddr0         (instr_mem_instruction[25:21]),
       .raddr1         (instr_mem_instruction[20:16]),
-      .waddr          (),
-      .wdata (),
-      .wren (),
-      .rdata0 (),
-      .rdata1 ()
+      .waddr          (waddr_sel),
+      .wdata          (wdata_sel),
+      .wren           (reg_file_wren_wire),
+      .rdata0         (rdata0_wire),
+      .rdata1         (rdata1_wire)
     );
 
     alu cpu_alu
     (
-      .operand0 (),
-      .operand1 (),
-      .shamt (),
-      .control (),
-      .result (),
-      .zero (),
-      .overflow ()
+      .operand0 (rdata0_wire),
+      .operand1 (operand1_wire),
+      .shamt (shamt_wire),
+      .control (control_wire),
+      .result (alu_result_wire),
+      .zero (zero_wire),
+      .overflow (overflow_wire)
     );
 
     data_memory cpu_data_memory
     (
       .clk  (clk),
-      .addr (),
-      .rdata (),
-      .wdata (),
-      .wren ()
+      .addr (alu_result_wire),
+      .rdata (data_mem_rdata_wire),
+      .wdata (rdata1_wire),
+      .wren (data_mem_wren_wire)
     );
 
     control_unt cpu_control_unit
     (
       .rst  (rst),
       .instruction  (instr_mem_instruction),
-      .data_mem_wren  (alu_zero_wire),
-      .reg_file_wren  (),
-      .reg_file_dmux_select(),
-      .reg_file_rmux_select (reg_file_rmux_select),
-      .alu_mux_select (alu_mux_select_wire),
-      .alu_control (alu_control_wire),
-      .alu_zero (alu_zero_wire),
-      .alu_shamt (alu_shamt_wire),
+      .data_mem_wren  (data_mem_wren_wire),
+      .reg_file_wren  (reg_file_wren_wire),
+      .reg_file_dmux_select(reg_file_dmux_sel),
+      .reg_file_rmux_select (reg_file_mux_sel),
+      .alu_mux_select (alu_mux_sel),
+      .alu_control (control_wire),
+      .alu_zero (zero_wire),
+      .alu_shamt (shamt_wire),
       .pc_control (pc_control_wire)
     );
 
@@ -150,29 +160,29 @@ module cpu
       .in0 (instr_mem_instruction[20:16]),
       .in1 (instr_mem_instruction[15:11]),
       .out (waddr_wire),
-      .sel ()
+      .sel (reg_file_mux_sel)
     );
 
     mux_2_to1 cpu_mux_2to1_alu
     (
-      .in0 (),
-      .in1 (sign_extension_out_wire),
+      .in0 (rdata1_wire),
+      .in1 (sign_out_wire),
       .out (operand1_wire),
-      .sel ()
+      .sel (alu_mux_sel)
     );
 
     mux_2_to1 cpu_mux_2to1_data_mem
     (
-      .in0 (),
-      .in1 (),
-      .out (),
-      .sel ()
+      .in0 (data_mem_rdata_wire),
+      .in1 (alu_result_wire),
+      .out (reg_file_wdata_wire),
+      .sel (reg_file_dmux_sel)
     );
 
     sign_extension cpu_sign_extension
     (
-      .in (instr_mem_instruction[15:0]),
-      .out (sign_extension_out_wire)
+      .in (inst_mem_instruction[15:0]),
+      .out (sign_out_wire)
     );
 
 	//---------------------------------------------------------------
