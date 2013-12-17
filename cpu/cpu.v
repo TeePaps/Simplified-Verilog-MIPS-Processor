@@ -92,7 +92,7 @@ module cpu
 	//---------------------------------------------------------------
 	// Instantiations
 	//---------------------------------------------------------------
-    program_conter cpu_program_counter
+    program_counter cpu_program_counter
     (
       .clk            (clk),
       .rst            (rst),
@@ -141,7 +141,7 @@ module cpu
       .wren (data_mem_wren_wire)
     );
 
-    control_unt cpu_control_unit
+    control_unit cpu_control_unit
     (
       .rst  (rst),
       .instruction  (instr_mem_instruction),
