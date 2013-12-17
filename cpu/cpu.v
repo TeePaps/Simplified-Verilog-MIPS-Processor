@@ -75,7 +75,7 @@ module cpu
     wire [31:0] reg_file_wdata_wire;
     wire [31:0] rdata1_wire;
     wire [31:0] sign_out_wire;
-    wire waadr_sel;
+    wire waddr_sel;
     wire reg_file_rmux_sel;
     wire reg_file_dmux_sel;
     wire alu_mux_sel;
@@ -103,7 +103,7 @@ module cpu
       .pc             (pc_to_address_wire)
     );
 
-    instruction_memory cpu_program_counter
+    instruction_memory cpu_instruction_memory
     (
       .address        (pc_to_address_wire),
       .instruction    (instr_mem_instruction)
@@ -148,7 +148,7 @@ module cpu
       .data_mem_wren  (data_mem_wren_wire),
       .reg_file_wren  (reg_file_wren_wire),
       .reg_file_dmux_select(reg_file_dmux_sel),
-      .reg_file_rmux_select (reg_file_mux_sel),
+      .reg_file_rmux_select (reg_file_rmux_sel),
       .alu_mux_select (alu_mux_sel),
       .alu_control (control_wire),
       .alu_zero (zero_wire),
@@ -161,7 +161,7 @@ module cpu
       .in0 (instr_mem_instruction[20:16]),
       .in1 (instr_mem_instruction[15:11]),
       .out (waddr_sel),
-      .sel (reg_file_mux_sel)
+      .sel (reg_file_rmux_sel)
     );
 
     mux_2_to1 cpu_mux_2to1_alu
