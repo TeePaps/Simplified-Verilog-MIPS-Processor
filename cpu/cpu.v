@@ -82,11 +82,10 @@ module cpu
     wire [3:0] control_wire;
     wire zero_wire;
     wire [3:0] data_mem_wren_wire;
-    wire reg_file_wren_wire;
     wire [31:0] alu_result_wire;
     wire [31:0] data_mem_rdata_wire;
-    wire [4:0] rdata0_wire;
-    wire [4:0] rdata1_wire;
+    wire [31:0] rdata0_wire;
+    wire [31:0] rdata1_wire;
     wire overflow_wire;
 
 	//---------------------------------------------------------------
