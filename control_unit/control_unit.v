@@ -45,14 +45,14 @@ module control_unit
 	//--------------------------
 	// < Enter Input Ports  >
 	input					rst;
-    input 		[31:0]		instruction;
-	input 					alu_zero;
+  input 		  [31:0]		instruction;
+	input 				alu_zero;
 
     //--------------------------
     // Output Ports
     //--------------------------
     // < Enter Output Ports  >
-    output reg	[3:0]		data_mem_wren;
+  output reg	[3:0]		data_mem_wren;
 	output reg				reg_file_wren;
 	output reg  			reg_file_dmux_select; // Refers to the mux that feeds the wdata bus of the register file
 	output reg				reg_file_rmux_select; // Refers to the mux that feeds the waddr bus of the register file
@@ -124,6 +124,9 @@ module control_unit
     //-------------------------------------------------
     // Signal Declarations: wire
     //-------------------------------------------------
+    wire [5:0] opcode, funct;
+    wire [4:0] alu_shamt;
+    
     assign opcode     = instruction[31:26]; // 6 bits
     assign alu_shamt  = instruction[10:6];  // 5 bits
     assign funct      = instruction[5:0];   // 6 bits
@@ -160,7 +163,7 @@ module control_unit
         case (opcode)
             (
                 C_LOAD_WORD                   ||
-                C_LOAD_UPPER_IMMEDIATE        ||
+                C_LOAD_UPPER_IMMEDIATE        
             )                                         : reg_file_dmux_select = 1'b1;
             default                                   : reg_file_dmux_select = 1'b0;
         endcase
@@ -176,7 +179,7 @@ module control_unit
             (
                 R_TYPE                        ||
                 C_BRANCH_ON_EQUAL             ||
-                C_BRANCH_ON_NOT_EQUAL         ||
+                C_BRANCH_ON_NOT_EQUAL         
             )                                         : alu_mux_select = 1'b0;
             default                                   : alu_mux_select = 1'b0;
         endcase
@@ -208,15 +211,12 @@ module control_unit
                     C_ADD_IMMEDIATE
                 )                                         : alu_control = 4'b0101;
                 // SUBTRACT
-                (
-                    C_SUBTRACT_UNSIGNED           ||
-                    C_SUBTRACT_UNSIGNED_IMMEDIATE
-                )                                         : alu_control = 4'b0110;
+                
+                    
+                C_SUBTRACT_UNSIGNED                   : alu_control = 4'b0110;
                 // SUBTRACT SIGNED
-                (
-                    C_SUBTRACT                    ||
-                    C_SUBTRACT_IMMEDIATE
-                )                                         : alu_control = 4'b0101;
+                
+                C_SUBTRACT                            : alu_control = 4'b0101;
                 // SET ON LESS THAN
                 (
                     C_SET_ON_LESS_THAN            ||
@@ -236,7 +236,7 @@ module control_unit
         endcase
 
         // Program Counter Control
-        case (opcdode)
+        case (opcode)
             C_JUMP                                    : pc_control = 4'b0001;
             C_JUMP_REGISTER                           : pc_control = 4'b0010;
             C_BRANCH_ON_EQUAL                         : if ( alu_zero == 1'b0 ) 
@@ -249,7 +249,7 @@ module control_unit
                                                             pc_control = pc_control + 4;
             default                                   : pc_control = pc_control + 4;
         endcase
-
+    end
 
 
 	//---------------------------------------------------------------
