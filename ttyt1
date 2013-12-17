@@ -1,0 +1,315 @@
+
+
+ CMPEN 331, Homework 1
+
+
+Posted September 3, 2013.  Due September 10, 2013 by 11:55 pm, to the ANGEL Dropbox Homework 1.  
+
+The goal is to learn to use the MARS simulator, and then answer some simple questions.
+
+This is an individual project.  Estimated time is one hour, plus some reading before that.
+ 
+
+Download the MARS program from http://courses.missouristate.edu/kenvollmar/mars/.  This is version 4.2.  It's a Java program, so it should run anywhere.
+
+The tutorial at http://www.d.umn.edu/~gshute/spimsal/Mars/Mars.xhtml is pretty good, with lots of screenshots.  Try that first, before starting MARS.  Then start MARS, and go through the tutorial again.
+ 
+
+    The tutorial describes MARS version 4.1, but you probably won't notice the differences.
+     
+    The abbreviation MAL is for MIPS Assembly Language.
+
+ 
+
+Take a look at the MARS Features list and the more complete MARS Help and Intro.  MARS itself has a Help feature, so become familiar with that.
+
+To start MARS, just double-click on its icon.  
+Let's start with an absolute minimal program - it starts and ends, and does nothing else.  Comments begin with # and go to the end of the line.  
+Assembler directives begin with a dot, and are usually tab-indented.
+ 
+
+    Start MARS, click on the New File button (farthest left, or menu File / New), then type the program into the editor window.  The default file name is mips1.asm.  You will probably need to resize the MARS window and its panels, to increase the size of the Edit panel.  Be sure that the Registers panel shows all three columns.
+        
+     
+    Don't take a shortcut by using copy-and-paste -- you will miss the information that MARS displays while you type.  Copy-and-paste is ok later (well, subject to not cheating, of course).
+      
+    # Version 1, do nothing, then exit
+
+    # switch to 
+    the Text segment
+            .text
+            .globl  main
+    main:
+            # the rest of the main program goes here
+
+            # end the program, no explicit return status
+            li      $v0, 10
+            syscall
+
+
+    # switch to the Data segment
+            .data
+            # global data is defined here
+
+           
+
+    Save the file as version1.mips (fourth button, or File / Save as ...).  The usual filename would be like version1.s or version1.asm.
+         
+    Assemble the program.  You should see
+       
+    Assemble: assembling /Users/dheller/Desktop/version1.mips
+
+    Assemble: operation completed successfully.
+       
+    in the Mars Messages panel at the bottom.  Of course, your directory name will be different.
+         
+    Run the program.  You should see
+
+    Go: running version1.mips
+
+    Go: execution completed successfully.
+       
+    in the Mars Messages panel, and
+            
+    -- program is finished running --
+       
+    in the Run I/O panel. 
+     
+    The program is displayed in the Text Segment panel, and the global variables are displayed in the Data Segment, except that there aren't any. 
+         
+    You can set breakpoints in the program by checking the Bkpt box at the left of each instruction.  More of that later.
+             
+    Note that the li instruction (load immediate) turned into an addiu instruction (add immediate unsigned).  That's because li is actually a pseudo-instruction.  Register $v0 turned into register $2, which is the same thing.  Register $0 (or $zero) always contains 0 bits. 
+     
+    The syscall instruction (system call) initiates an operating system action, depending on the value in register $v0 when it is executed.  Syscall 10 is like the exit() function in C or C++. 
+     
+    Note that the Program Counter register started as 0x00400000 and ended as x00400008, which is one instruction past the last one in the program.
+
+
+Next, we add some function definitions, which make it easier to deal with system calls.  Note the second .text directive, so the new code isn't treated as data.  
+
+ 
+
+
+# Version 2, do nothing, then exit
+
+# switch to the Text segment
+        .text
+
+        .globl  main
+main:
+        # the rest of the main program goes here
+
+        # call Exit
+        jal     Exit    # end the program, no explicit return status
+
+
+# switch to the Data segment
+        .data
+        # global data is defined here
+
+        
+
+# Wrapper functions around some of the system calls
+# See P&H COD, Fig. B.9.1, for the complete list.
+
+# switch to the Text segment
+        
+.text
+
+        
+.globl  Print_integer
+Print_integer:  # print the integer in register a0
+        li      $v0, 1
+        
+syscall
+        jr      $ra
+
+        .globl  Print_string
+Print_string:   # print the string whose starting address is in register a0
+        li      $v0, 4
+        syscall
+        jr      $ra
+
+        .globl  Exit
+Exit:           # end the program, no explicit return status
+        li      $v0, 10
+        syscall
+        jr      $ra
+
+        .globl  Exit2
+Exit2:          # end the program, with return status from register a0
+        li      $v0, 17
+        syscall
+        jr      $ra
+ 
+
+
+Finally, the third version, the ubiquitous Hello World program.
+
+ 
+
+
+# Version 3, print something, then exit
+
+# switch to the Text segment
+        .text
+        .globl  main
+main:
+        # the rest of the main program goes here
+        
+la      $a0, hello_string 
+        jal     Print_string
+       
+
+        jal     Exit    # end the program, no explicit return status
+        
+       
+# switch to the Data segment
+        
+.data
+        # global data is defined here
+hello_string:
+        
+.asciiz "Hello, world\n"
+
+       
+
+# Wrapper functions around some of the system calls
+# See P&H COD, Fig. B.9.1, for the complete list.
+
+# switch to the Text segment
+        .text
+       
+
+        .globl  Print_integer
+Print_integer:  # print the integer in register a0
+        li      $v0, 1
+        syscall 
+        jr      $ra
+       
+
+        .globl  Print_string
+Print_string:   # print the string whose starting address is in register a0
+        li      $v0, 4
+        syscall 
+        jr      $ra
+       
+
+        .globl  Exit
+Exit:           # end the program, no explicit return status
+        li      $v0, 10
+        syscall 
+        jr      $ra
+       
+
+        .globl  Exit2
+Exit2:          # end the program, with return status from register a0
+        li      $v0, 17
+        syscall
+        jr      $ra 
+ 
+
+ 
+
+
+
+Finally, here is a program derived from P&H COD, Fig. B.1.4, corrected and adapted for the MARS MIPS Simulator.  There are some differences between MARS and QtSPIM concerning the starting address for main(), and a few other things.  This version will work with both simulators.  Copy and paste seems completely appropriate at this point.  
+
+
+	.text
+#	.align	2		# MARS doesn't like this
+	.globl	main
+main:
+	subu	$sp, $sp, 40	# this number depends on how much will be put on the stack
+	sw	$ra, 20($sp)	# save return address register
+	sd	$a0, 32($sp)	# save registers a0, a1
+	sw	$0, 24($sp)	# sum = 0
+	sw	$0, 28($sp)	# i = 0
+loop:
+	lw	$t6, 28($sp)	# i
+	mul	$t7, $t6, $t6	# i * i
+	lw	$t8, 24($sp)	# sum
+	addu	$t9, $t8, $t7	# sum + i*i
+	sw	$t9, 24($sp)	# sum = sum + i*i
+	addu	$t0, $t6, 1	# i + 1
+	sw	$t0, 28($sp)	# i = i + 1
+	ble	$t0, 100, loop	# if (i <= 100) goto loop
+	
+	la	$a0, str1
+	jal	Print_string	# print the string whose starting address is in register a0
+	lw	$a0, 24($sp)	# sum
+	jal	Print_integer	# print the integer in register a0
+	la	$a0, str2
+	jal	Print_string	# print the string whose starting address is in register a0
+	
+	# MARS doesn't like this exit sequence, since the initial value of ra is 0
+#	move	$v0, $0		# return status 0
+#	lw	$ra, 20($sp)	# restore saved return address
+#	addu	$sp, $sp, 40	# pop the stack (important - same number as before!)
+#	jr	$ra		# return from main() to the OS
+	
+	# MARS likes this, but we need to demo Exit2
+#	jal	Exit		# end the program, no explicit return status
+	
+	# MARS likes this
+	move	$a0, $0
+	jal	Exit2		# end the program, with return status from register a0
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	.data
+	.align	0
+str1:
+	.asciiz "The sum from 0 .. 100 is :"
+str2:
+	.asciiz	":\n"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Wrapper functions around some of the system calls
+# See P&H COD, Fig. B.9.1, for the complete list.
+
+# switch to the Text segment
+	.text
+
+	.globl	Print_integer
+Print_integer:	# print the integer in register a0
+	li	$v0, 1
+	syscall
+	jr	$ra
+
+	.globl	Print_string
+Print_string:	# print the string whose starting address is in register a0
+	li	$v0, 4
+	syscall
+	jr	$ra
+
+	.globl	Exit
+Exit:		# end the program, no explicit return status
+	li	$v0, 10
+	syscall
+	jr	$ra
+
+	.globl	Exit2
+Exit2:		# end the program, with return status from register a0
+	li	$v0, 17
+	syscall
+	jr	$ra
+
+
+ 
+
+
+Now we need to verify that you actually can use MARS successfully.
+ 
+
+    When you run the program, what is printed? 
+     
+    What is the value in register $t7 (in decimal) when the program ends?   
+     
+    Set a breakpoint for the instruction at line 12 of the assembler source code.  Run the program again; it should stop at the breakpoint.  Now execute that one instruction.  Which registers have changed as a result of executing that one instruction?  You might need to continue past the breakpoint several times to see what's going on.  Note that P&H COD Appendix B.10 has descriptions of all the instructions, but you can't just look up the answer.  (You should look up the instruction in App. B.10, but the answer requires you to pull together several different pieces of information, not just 
+    one.)
+         
+    Put the answers to these three questions in the Homework 1 Dropbox on ANGEL, in the textbox that is provided.  You don't need to attach any files.
+
