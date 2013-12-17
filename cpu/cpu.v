@@ -156,7 +156,7 @@ module cpu
       .pc_control (pc_control_wire)
     );
 
-    mux_2_to1 cpu_mux_2to1_reg_file
+    mux_2to1 cpu_mux_2to1_reg_file
     (
       .in0 (instr_mem_instruction[20:16]),
       .in1 (instr_mem_instruction[15:11]),
@@ -164,7 +164,7 @@ module cpu
       .sel (reg_file_rmux_sel)
     );
 
-    mux_2_to1 cpu_mux_2to1_alu
+    mux_2to1 cpu_mux_2to1_alu
     (
       .in0 (rdata1_wire),
       .in1 (sign_out_wire),
@@ -172,7 +172,7 @@ module cpu
       .sel (alu_mux_sel)
     );
 
-    mux_2_to1 cpu_mux_2to1_data_mem
+    mux_2to1 cpu_mux_2to1_data_mem
     (
       .in0 (data_mem_rdata_wire),
       .in1 (alu_result_wire),
