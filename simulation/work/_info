@@ -1,0 +1,210 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dZ:/Documents/Penn State/cmpen331/Assignments/HW6/Project Files/simulation
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+valu
+Z1 !s100 gVDM84TL3=nKi^Y3aHTUe3
+Z2 Izmjb1`dGb0;PdBBCKR[A^3
+Z3 V`JN@9S9cnhjKRR_L]QIcM3
+Z4 dZ:/Documents/Penn State/cmpen331/Assignments/HW6/Project Files/simulation
+Z5 w1386441072
+Z6 8../alu/alu.v
+Z7 F../alu/alu.v
+L0 24
+Z8 OP;L;10.2c;57
+r1
+31
+Z9 !s90 -reportprogress|300|-lint|-work|work|../alu/alu.v|
+Z10 o-lint -work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -O0
+Z11 !s110 1387322258
+Z12 !s108 1387322258.678000
+Z13 !s107 ../alu/alu.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vcontrol_unit
+Z14 !s110 1387322259
+Z15 !s100 lHd@BUI48]LMOV_fEI5UT1
+Z16 IRjX@VJEk3maF4ace3Zk2<2
+R3
+R4
+Z17 w1387321355
+Z18 8../control_unit/control_unit.v
+Z19 F../control_unit/control_unit.v
+L0 24
+R8
+r1
+31
+Z20 !s90 -reportprogress|300|-lint|-work|work|../control_unit/control_unit.v|
+R10
+Z21 !s108 1387322259.333000
+Z22 !s107 ../control_unit/control_unit.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vcpu
+R14
+Z23 In_k5U5eZdT:^00Gei[dM^3
+R3
+R4
+Z24 w1387322256
+Z25 8../cpu/cpu.v
+Z26 F../cpu/cpu.v
+L0 25
+R8
+r1
+31
+Z27 !s90 -reportprogress|300|-lint|-work|work|../cpu/cpu.v|
+R10
+Z28 !s100 h@9=zF3zIC@Bil5O45aJ^0
+Z29 !s108 1387322259.676000
+Z30 !s107 ../cpu/cpu.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vdata_memory
+Z31 !s100 S:]GFL4lFSnhH8QjF@f@C0
+Z32 IEdTH]8cFg;::`D]HZ<oT82
+R3
+R4
+Z33 w1386461402
+Z34 8../data_memory/data_memory.v
+Z35 F../data_memory/data_memory.v
+L0 24
+R8
+r1
+31
+Z36 !s90 -reportprogress|300|-lint|-work|work|../data_memory/data_memory.v|
+R10
+Z37 !s110 1387322260
+Z38 !s108 1387322260.160000
+Z39 !s107 ../data_memory/data_memory.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vinstruction_memory
+R37
+Z40 !s100 kh1cDDNOW@AfA@1_FPmd63
+Z41 IS1`UGN3RR5jmo_hVDigQ]2
+R3
+R4
+Z42 w1386459304
+Z43 8../instruction_memory/instruction_memory.v
+Z44 F../instruction_memory/instruction_memory.v
+L0 24
+R8
+r1
+31
+Z45 !s90 -reportprogress|300|-lint|-work|work|../instruction_memory/instruction_memory.v|
+R10
+Z46 !s108 1387322260.409000
+Z47 !s107 ../instruction_memory/instruction_memory.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vmux_2to1
+R14
+Z48 !s100 2o4S39]LeQ6?RQT`MB:=10
+Z49 Ik_bd6o7L0h9[i2hHCo0;X1
+R3
+R4
+Z50 w1372099964
+Z51 8../common/mux_2to1.v
+Z52 F../common/mux_2to1.v
+L0 24
+R8
+r1
+31
+Z53 !s108 1387322258.958000
+Z54 !s107 ../common/sign_extension.v|../common/mux_2to1.v|
+Z55 !s90 -reportprogress|300|-lint|-work|work|../common/mux_2to1.v|../common/sign_extension.v|
+R10
+!i10b 1
+!s85 0
+!s101 -O0
+vprogram_counter
+R37
+Z56 !s100 Ah0zEHMo0@_4@844SFgo[0
+Z57 ICL]oL@9:R;XYTBUgdce4n3
+R3
+R4
+Z58 w1386457662
+Z59 8../program_counter/program_counter.v
+Z60 F../program_counter/program_counter.v
+L0 24
+R8
+r1
+31
+Z61 !s90 -reportprogress|300|-lint|-work|work|../program_counter/program_counter.v|
+R10
+Z62 !s108 1387322260.706000
+Z63 !s107 ../program_counter/program_counter.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vregister_file
+Z64 !s100 mG;IBWJk_OkRJZ6D>7S^l1
+Z65 I_P0Hgkf?2cBzQ@M]Yg9E]0
+R3
+R4
+Z66 w1386460072
+Z67 8../register_file/register_file.v
+Z68 F../register_file/register_file.v
+L0 24
+R8
+r1
+31
+Z69 !s90 -reportprogress|300|-lint|-work|work|../register_file/register_file.v|
+R10
+Z70 !s110 1387322261
+!i10b 1
+!s85 0
+Z71 !s108 1387322261.018000
+Z72 !s107 ../register_file/register_file.v|
+!s101 -O0
+vsign_extension
+R14
+Z73 !s100 Yl8Sj?]AmMRf3lYm_k11z2
+Z74 I_=>Clh?EFLzm[FeSGHbc13
+R3
+R4
+R50
+Z75 8../common/sign_extension.v
+Z76 F../common/sign_extension.v
+L0 24
+R8
+r1
+31
+R53
+R54
+R55
+R10
+!i10b 1
+!s85 0
+!s101 -O0
+vtb_cpu
+R70
+!i10b 1
+Z77 !s100 Z:DY;?Qfkoj:XOB^8;bo70
+Z78 I=bHII`X9UQ2U9_nRT:S4B1
+R3
+R4
+Z79 w1386441934
+Z80 8tb_cpu.v
+Z81 Ftb_cpu.v
+L0 24
+R8
+r1
+!s85 0
+31
+!s108 1387322261.314000
+!s107 tb_cpu.v|
+Z82 !s90 -reportprogress|300|-lint|-work|work|tb_cpu.v|
+!s101 -O0
+R10

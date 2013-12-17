@@ -73,9 +73,8 @@ module cpu
     wire [31:0] instr_mem_instruction;
     wire [31:0] operand1_wire;
     wire [31:0] reg_file_wdata_wire;
-    wire [31:0] rdata1_wire;
     wire [31:0] sign_out_wire;
-    wire waddr_sel;
+    wire [4:0] waddr_wire;
     wire reg_file_rmux_sel;
     wire reg_file_dmux_sel;
     wire alu_mux_sel;
@@ -86,7 +85,8 @@ module cpu
     wire reg_file_wren_wire;
     wire [31:0] alu_result_wire;
     wire [31:0] data_mem_rdata_wire;
-    wire [31:0] rdata0_wire;
+    wire [4:0] rdata0_wire;
+    wire [4:0] rdata1_wire;
     wire overflow_wire;
 
 	//---------------------------------------------------------------
@@ -97,7 +97,7 @@ module cpu
       .clk            (clk),
       .rst            (rst),
       .pc_control     (pc_control_wire),
-      .jump_address   (pc_control_wire),
+      .jump_address   (jump_address_wire),
       .branch_offset  (branch_offset_wire),
       .reg_address    (reg_address_wire),
       .pc             (pc_to_address_wire)
@@ -114,7 +114,7 @@ module cpu
       .clk            (clk),
       .raddr0         (instr_mem_instruction[25:21]),
       .raddr1         (instr_mem_instruction[20:16]),
-      .waddr          (waddr_sel),
+      .waddr          (waddr_wire),
       .wdata          (reg_file_wdata_wire),
       .wren           (reg_file_wren_wire),
       .rdata0         (rdata0_wire),
@@ -160,7 +160,7 @@ module cpu
     (
       .in0 (instr_mem_instruction[20:16]),
       .in1 (instr_mem_instruction[15:11]),
-      .out (waddr_sel),
+      .out (waddr_wire),
       .sel (reg_file_rmux_sel)
     );
 
