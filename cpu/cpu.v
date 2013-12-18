@@ -66,13 +66,11 @@ module cpu
     // Signal Declarations: wire
     //-------------------------------------------------
     wire [3:0] pc_control_wire;
-    wire [25:0] jump_address_wire;
-    wire [15:0] branch_offset_wire;
-    wire [31:0] reg_address_wire;
     wire [31:0] pc_to_address_wire;
     wire [31:0] instr_mem_instruction;
     wire [31:0] operand1_wire;
     wire [31:0] reg_file_wdata_wire;
+    wire reg_file_wren_wire;
     wire [31:0] sign_out_wire;
     wire [4:0] waddr_wire;
     wire reg_file_rmux_sel;
@@ -96,9 +94,9 @@ module cpu
       .clk            (clk),
       .rst            (rst),
       .pc_control     (pc_control_wire),
-      .jump_address   (jump_address_wire),
-      .branch_offset  (branch_offset_wire),
-      .reg_address    (reg_address_wire),
+      .jump_address   (instr_mem_instruction[25:0]),
+      .branch_offset  (instr_mem_instruction[15:0]),
+      .reg_address    (rdata0_wire),
       .pc             (pc_to_address_wire)
     );
 
@@ -155,7 +153,7 @@ module cpu
       .pc_control (pc_control_wire)
     );
 
-    mux_2to1 cpu_mux_2to1_reg_file
+    mux_2to1_reg cpu_mux_2to1_reg_file
     (
       .in0 (instr_mem_instruction[20:16]),
       .in1 (instr_mem_instruction[15:11]),

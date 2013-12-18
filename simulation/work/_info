@@ -22,39 +22,39 @@ r1
 31
 Z9 !s90 -reportprogress|300|-lint|-work|work|../alu/alu.v|
 Z10 o-lint -work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -O0
-Z11 !s110 1387322839
-Z12 !s108 1387322839.523000
+Z11 !s110 1387325858
+Z12 !s108 1387325858.563000
 Z13 !s107 ../alu/alu.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vcontrol_unit
-Z14 !s110 1387322840
-Z15 !s100 lHd@BUI48]LMOV_fEI5UT1
-Z16 IRjX@VJEk3maF4ace3Zk2<2
+Z14 !s110 1387325859
+Z15 IOIn`=6eBFOfVa6=j?Tl0F3
 R3
 R4
-Z17 w1387321355
-Z18 8../control_unit/control_unit.v
-Z19 F../control_unit/control_unit.v
+Z16 w1387325839
+Z17 8../control_unit/control_unit.v
+Z18 F../control_unit/control_unit.v
 L0 24
 R8
 r1
 31
-Z20 !s90 -reportprogress|300|-lint|-work|work|../control_unit/control_unit.v|
+Z19 !s90 -reportprogress|300|-lint|-work|work|../control_unit/control_unit.v|
 R10
-Z21 !s108 1387322840.490000
+Z20 !s100 V3X36?MQ:aRfMd?T]X1433
+Z21 !s108 1387325859.452000
 Z22 !s107 ../control_unit/control_unit.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vcpu
 R14
-Z23 !s100 h@9=zF3zIC@Bil5O45aJ^0
-Z24 In_k5U5eZdT:^00Gei[dM^3
+Z23 !s100 lDPm1X47W:bndIHNVDR=H2
+Z24 IE[<a1GgRbDf>[456eS7Mk1
 R3
 R4
-Z25 w1387322408
+Z25 w1387324757
 Z26 8../cpu/cpu.v
 Z27 F../cpu/cpu.v
 L0 25
@@ -63,7 +63,7 @@ r1
 31
 Z28 !s90 -reportprogress|300|-lint|-work|work|../cpu/cpu.v|
 R10
-Z29 !s108 1387322840.880000
+Z29 !s108 1387325859.827000
 Z30 !s107 ../cpu/cpu.v|
 !i10b 1
 !s85 0
@@ -82,8 +82,8 @@ r1
 31
 Z36 !s90 -reportprogress|300|-lint|-work|work|../data_memory/data_memory.v|
 R10
-Z37 !s110 1387322841
-Z38 !s108 1387322841.254000
+Z37 !s110 1387325860
+Z38 !s108 1387325860.232000
 Z39 !s107 ../data_memory/data_memory.v|
 !i10b 1
 !s85 0
@@ -103,7 +103,7 @@ r1
 31
 Z45 !s90 -reportprogress|300|-lint|-work|work|../instruction_memory/instruction_memory.v|
 R10
-Z46 !s108 1387322841.566000
+Z46 !s108 1387325860.544000
 Z47 !s107 ../instruction_memory/instruction_memory.v|
 !i10b 1
 !s85 0
@@ -121,62 +121,82 @@ L0 24
 R8
 r1
 31
-Z53 !s108 1387322839.912000
-Z54 !s107 ../common/sign_extension.v|../common/mux_2to1.v|
-Z55 !s90 -reportprogress|300|-lint|-work|work|../common/mux_2to1.v|../common/sign_extension.v|
+Z53 !s108 1387325858.953000
+Z54 !s107 ../common/sign_extension.v|../common/mux_2to1_reg.v|../common/mux_2to1.v|
+Z55 !s90 -reportprogress|300|-lint|-work|work|../common/mux_2to1.v|../common/mux_2to1_reg.v|../common/sign_extension.v|
+R10
+!i10b 1
+!s85 0
+!s101 -O0
+vmux_2to1_reg
+R14
+Z56 !s100 6X=^<?4U>kH4nnC>lbRJk2
+Z57 ID<cM7ozSk6;I2[f[z[0eb1
+R3
+R4
+Z58 w1387323445
+Z59 8../common/mux_2to1_reg.v
+Z60 F../common/mux_2to1_reg.v
+L0 24
+R8
+r1
+31
+R53
+R54
+R55
 R10
 !i10b 1
 !s85 0
 !s101 -O0
 vprogram_counter
-Z56 !s100 Ah0zEHMo0@_4@844SFgo[0
-Z57 ICL]oL@9:R;XYTBUgdce4n3
+R37
+Z61 !s100 Ah0zEHMo0@_4@844SFgo[0
+Z62 ICL]oL@9:R;XYTBUgdce4n3
 R3
 R4
-Z58 w1386457662
-Z59 8../program_counter/program_counter.v
-Z60 F../program_counter/program_counter.v
+Z63 w1386457662
+Z64 8../program_counter/program_counter.v
+Z65 F../program_counter/program_counter.v
 L0 24
 R8
 r1
 31
-Z61 !s90 -reportprogress|300|-lint|-work|work|../program_counter/program_counter.v|
+Z66 !s90 -reportprogress|300|-lint|-work|work|../program_counter/program_counter.v|
 R10
-Z62 !s110 1387322842
-Z63 !s108 1387322841.941000
-Z64 !s107 ../program_counter/program_counter.v|
+Z67 !s108 1387325860.794000
+Z68 !s107 ../program_counter/program_counter.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vregister_file
-R62
-Z65 !s100 mG;IBWJk_OkRJZ6D>7S^l1
-Z66 I_P0Hgkf?2cBzQ@M]Yg9E]0
+Z69 !s100 mG;IBWJk_OkRJZ6D>7S^l1
+Z70 I_P0Hgkf?2cBzQ@M]Yg9E]0
 R3
 R4
-Z67 w1386460072
-Z68 8../register_file/register_file.v
-Z69 F../register_file/register_file.v
+Z71 w1386460072
+Z72 8../register_file/register_file.v
+Z73 F../register_file/register_file.v
 L0 24
 R8
 r1
 31
-Z70 !s90 -reportprogress|300|-lint|-work|work|../register_file/register_file.v|
+Z74 !s90 -reportprogress|300|-lint|-work|work|../register_file/register_file.v|
 R10
+Z75 !s110 1387325861
 !i10b 1
 !s85 0
-Z71 !s108 1387322842.284000
-Z72 !s107 ../register_file/register_file.v|
+Z76 !s108 1387325861.137000
+Z77 !s107 ../register_file/register_file.v|
 !s101 -O0
 vsign_extension
 R14
-Z73 !s100 Yl8Sj?]AmMRf3lYm_k11z2
-Z74 I_=>Clh?EFLzm[FeSGHbc13
+Z78 !s100 Yl8Sj?]AmMRf3lYm_k11z2
+Z79 I_=>Clh?EFLzm[FeSGHbc13
 R3
 R4
 R50
-Z75 8../common/sign_extension.v
-Z76 F../common/sign_extension.v
+Z80 8../common/sign_extension.v
+Z81 F../common/sign_extension.v
 L0 24
 R8
 r1
@@ -189,22 +209,22 @@ R10
 !s85 0
 !s101 -O0
 vtb_cpu
-R62
+R75
 !i10b 1
-Z77 !s100 Z:DY;?Qfkoj:XOB^8;bo70
-Z78 I=bHII`X9UQ2U9_nRT:S4B1
+Z82 !s100 Z:DY;?Qfkoj:XOB^8;bo70
+Z83 I=bHII`X9UQ2U9_nRT:S4B1
 R3
 R4
-Z79 w1386441934
-Z80 8tb_cpu.v
-Z81 Ftb_cpu.v
+Z84 w1386441934
+Z85 8tb_cpu.v
+Z86 Ftb_cpu.v
 L0 24
 R8
 r1
 !s85 0
 31
-!s108 1387322842.596000
+!s108 1387325861.527000
 !s107 tb_cpu.v|
-Z82 !s90 -reportprogress|300|-lint|-work|work|tb_cpu.v|
+Z87 !s90 -reportprogress|300|-lint|-work|work|tb_cpu.v|
 !s101 -O0
 R10

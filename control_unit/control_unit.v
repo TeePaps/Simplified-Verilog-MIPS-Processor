@@ -171,7 +171,7 @@ module control_unit
         // Register Write Source Multiplexer
         case (opcode)
             R_TYPE                                    : reg_file_rmux_select = 1'b1;
-            default                                   : reg_file_dmux_select = 1'b0;
+            default                                   : reg_file_rmux_select = 1'b0;
         endcase
 
         // ALU Source Multiplexer
