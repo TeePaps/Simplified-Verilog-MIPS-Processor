@@ -133,6 +133,7 @@ module control_unit
 
     always@*
     begin
+
         if ( rst != 1'b1 )
         begin
             // Data Memory Write Enable
@@ -155,7 +156,7 @@ module control_unit
         end
         else
         begin
-            data_mem_wren = 1'b0;
+            data_mem_wren = 4'b0000;
             reg_file_wren = 1'b0;
         end
 
@@ -164,8 +165,8 @@ module control_unit
             (
                 C_LOAD_WORD                   ||
                 C_LOAD_UPPER_IMMEDIATE
-            )                                         : reg_file_dmux_select = 1'b1;
-            default                                   : reg_file_dmux_select = 1'b0;
+            )                                         : reg_file_dmux_select = 1'b0;
+            default                                   : reg_file_dmux_select = 1'b1;
         endcase
 
         // Register Write Source Multiplexer
@@ -180,7 +181,7 @@ module control_unit
                 R_TYPE                        ||
                 C_BRANCH_ON_EQUAL             ||
                 C_BRANCH_ON_NOT_EQUAL
-            )                                         : alu_mux_select = 1'b0;
+            )                                         : alu_mux_select = 1'b1;
             default                                   : alu_mux_select = 1'b0;
         endcase
 
@@ -239,15 +240,9 @@ module control_unit
         case (opcode)
             C_JUMP                                    : pc_control = 4'b0001;
             C_JUMP_REGISTER                           : pc_control = 4'b0010;
-            C_BRANCH_ON_EQUAL                         : if ( alu_zero == 1'b0 )
-                                                            pc_control = 4'b0011;
-                                                        else
-                                                            pc_control = pc_control + 4;
-            C_BRANCH_ON_NOT_EQUAL                     : if ( alu_zero == 1'b0 )
-                                                            pc_control = 4'b0011;
-                                                        else
-                                                            pc_control = pc_control + 4;
-            default                                   : pc_control = pc_control + 4;
+            C_BRANCH_ON_EQUAL                         : pc_control = 4'b0011;
+            C_BRANCH_ON_NOT_EQUAL                     : pc_control = 4'b0011;
+            default                                   : pc_control = 4'b0000;
         endcase
     end
 

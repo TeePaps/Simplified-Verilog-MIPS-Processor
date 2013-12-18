@@ -22,18 +22,18 @@ r1
 31
 Z9 !s90 -reportprogress|300|-lint|-work|work|../alu/alu.v|
 Z10 o-lint -work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -O0
-Z11 !s110 1387325858
-Z12 !s108 1387325858.563000
+Z11 !s110 1387331664
+Z12 !s108 1387331664.644000
 Z13 !s107 ../alu/alu.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vcontrol_unit
-Z14 !s110 1387325859
-Z15 IOIn`=6eBFOfVa6=j?Tl0F3
+Z14 !s110 1387331665
+Z15 I^L8id@`0:QUHP?2P]gdDI1
 R3
 R4
-Z16 w1387325839
+Z16 w1387331642
 Z17 8../control_unit/control_unit.v
 Z18 F../control_unit/control_unit.v
 L0 24
@@ -42,8 +42,8 @@ r1
 31
 Z19 !s90 -reportprogress|300|-lint|-work|work|../control_unit/control_unit.v|
 R10
-Z20 !s100 V3X36?MQ:aRfMd?T]X1433
-Z21 !s108 1387325859.452000
+Z20 !s100 X4G?l`54MmO@fPz^E5lhb2
+Z21 !s108 1387331665.533000
 Z22 !s107 ../control_unit/control_unit.v|
 !i10b 1
 !s85 0
@@ -63,7 +63,7 @@ r1
 31
 Z28 !s90 -reportprogress|300|-lint|-work|work|../cpu/cpu.v|
 R10
-Z29 !s108 1387325859.827000
+Z29 !s108 1387331665.908000
 Z30 !s107 ../cpu/cpu.v|
 !i10b 1
 !s85 0
@@ -82,8 +82,8 @@ r1
 31
 Z36 !s90 -reportprogress|300|-lint|-work|work|../data_memory/data_memory.v|
 R10
-Z37 !s110 1387325860
-Z38 !s108 1387325860.232000
+Z37 !s110 1387331666
+Z38 !s108 1387331666.267000
 Z39 !s107 ../data_memory/data_memory.v|
 !i10b 1
 !s85 0
@@ -103,7 +103,7 @@ r1
 31
 Z45 !s90 -reportprogress|300|-lint|-work|work|../instruction_memory/instruction_memory.v|
 R10
-Z46 !s108 1387325860.544000
+Z46 !s108 1387331666.594000
 Z47 !s107 ../instruction_memory/instruction_memory.v|
 !i10b 1
 !s85 0
@@ -121,7 +121,7 @@ L0 24
 R8
 r1
 31
-Z53 !s108 1387325858.953000
+Z53 !s108 1387331664.987000
 Z54 !s107 ../common/sign_extension.v|../common/mux_2to1_reg.v|../common/mux_2to1.v|
 Z55 !s90 -reportprogress|300|-lint|-work|work|../common/mux_2to1.v|../common/mux_2to1_reg.v|../common/sign_extension.v|
 R10
@@ -163,7 +163,7 @@ r1
 31
 Z66 !s90 -reportprogress|300|-lint|-work|work|../program_counter/program_counter.v|
 R10
-Z67 !s108 1387325860.794000
+Z67 !s108 1387331666.891000
 Z68 !s107 ../program_counter/program_counter.v|
 !i10b 1
 !s85 0
@@ -182,10 +182,10 @@ r1
 31
 Z74 !s90 -reportprogress|300|-lint|-work|work|../register_file/register_file.v|
 R10
-Z75 !s110 1387325861
+Z75 !s110 1387331667
 !i10b 1
 !s85 0
-Z76 !s108 1387325861.137000
+Z76 !s108 1387331667.250000
 Z77 !s107 ../register_file/register_file.v|
 !s101 -O0
 vsign_extension
@@ -223,7 +223,7 @@ R8
 r1
 !s85 0
 31
-!s108 1387325861.527000
+!s108 1387331667.608000
 !s107 tb_cpu.v|
 Z87 !s90 -reportprogress|300|-lint|-work|work|tb_cpu.v|
 !s101 -O0
